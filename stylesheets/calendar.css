@@ -1,0 +1,32 @@
+#calendar-year-paginate {
+	margin: 0 auto;
+}
+
+#calendar-table {
+	font-family: GDS Transport, arial, sans-serif;
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+#calendar-table>tbody>tr>th {
+	font-weight: bold;
+}
+
+#calendar-table>tbody>tr>td {
+	text-align: center;
+	font-family: monospace;
+	width: calc(100%/7);
+	border: solid 1px black;
+}
+
+#calendar-table>tbody>tr>td.calendar-none {
+	background-color: #ffffff;
+}
+
+#calendar-table>tbody>tr>td.calendar-wd {
+	background-color: #b1b4b6;
+}
+
+#calendar-table>tbody>tr>td.calendar-nwd {
+	background-color: #d4351c;
+}
