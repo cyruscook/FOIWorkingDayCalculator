@@ -16,15 +16,15 @@
 		isSunday,
 		// New Year's Day
 		function (date) {
-			return date.day === 1 && date.month === 0;
+			return date.day === 1 && date.month === 1;
 		},
 		// 2 January
 		function (date) {
-			return date.day === 2 && date.month === 0;
+			return date.day === 2 && date.month === 1;
 		},
 		// 3 January
 		function (date) {
-			return date.day === 3 && date.month === 0 && (date.weekday === 1 || date.weekday === 2);
+			return date.day === 3 && date.month === 1 && (date.weekday === 1 || date.weekday === 2);
 		},
 		// Saint Patricks
 		function (date) {
