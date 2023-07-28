@@ -57,7 +57,7 @@
 			var item = document.createElement("td");
 			item.innerText = date.day;
 			row.appendChild(item);
-			if (window.wdcalc.isNonWorkingDay(date, easter)) {
+			if ((date.year > 1971 || (date.month >= 12 && date.day >= 16)) && window.wdcalc.isNonWorkingDay(date, easter)) {
 				item.classList.add("calendar-nwd");
 			} else {
 				item.classList.add("calendar-wd");
@@ -90,7 +90,14 @@
 
 	prevYearBtn.addEventListener("click", function (event) {
 		event.preventDefault();
+		if (prevYearBtn.hasAttribute("disabled")) {
+			return;
+		}
 		currentYear -= 1;
+		if (currentYear <= 1971) {
+			prevYearBtn.setAttribute("disabled", "true");
+			prevYearBtn.setAttribute("aria-disabled", "true");
+		}
 		showCalendarForYear(currentYear);
 		saveInAddress(currentYear);
 	});
@@ -100,6 +107,10 @@
 		currentYear += 1;
 		showCalendarForYear(currentYear);
 		saveInAddress(currentYear);
+		if (currentYear > 1971) {
+			prevYearBtn.removeAttribute("disabled");
+			prevYearBtn.removeAttribute("aria-disabled");
+		}
 	});
 
 	(function () {

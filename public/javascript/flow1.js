@@ -70,6 +70,10 @@
 			invalidDate("The given date is not a valid date");
 		}
 
+		if (date.year <= 1971 && date.month <= 12 && date.day < 16) {
+			invalidDate("Dates before 16 December 1971 are not supported");
+		}
+
 		var after20 = window.wdcalc.addWorkingDays(date, 20);
 		console.log(date.toString());
 		console.log(after20.toString());

@@ -20,11 +20,11 @@
 		},
 		// 2 January
 		function (date) {
-			return date.day === 2 && date.month === 1;
+			return date.year >= 1973 && date.day === 2 && date.month === 1;
 		},
 		// 3 January
 		function (date) {
-			return date.day === 3 && date.month === 1 && (date.weekday === 1 || date.weekday === 2);
+			return date.year >= 1973 && date.day === 3 && date.month === 1 && (date.weekday === 1 || date.weekday === 2);
 		},
 		// Saint Patricks
 		function (date) {
@@ -83,6 +83,9 @@
 	];
 
 	function isNonWorkingDay(date, easter) {
+		if (date.year <= 1971 && date.month <= 12 && date.day < 16) {
+			throw new Error("Dates before 16 December 1971 are not supported as the Banking and Financial Dealings Act 1971 had not received Royal Assent");
+		}
 		for (var i = 0; i < nonworkingdays.length; i++) {
 			if (nonworkingdays[i](date, easter)) {
 				return true;
