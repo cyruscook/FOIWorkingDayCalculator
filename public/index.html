@@ -19,6 +19,7 @@
 	<!--[if IE 8]>
 			<link rel="stylesheet" href="/stylesheets/govuk-frontend-ie8-4.7.0.min.css">
 		<![endif]-->
+	<link rel="stylesheet" href="/stylesheets/contents-list.min.css">
 </head>
 
 <body class="govuk-template__body ">
@@ -41,13 +42,38 @@
 	</header>
 	<div class="govuk-width-container ">
 		<main class="govuk-main-wrapper " id="main-content" role="main">
-			<h1 class="govuk-heading-xl">Freedom of Information Working Day Calculator</h1>
+			<nav aria-label="Contents" class="gem-c-contents-list" role="navigation">
+				<h2 class="gem-c-contents-list__title">
+					Contents
+				</h2>
+				<ol class="gem-c-contents-list__list">
+					<li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+						<a class="gem-c-contents-list__link govuk-link govuk-link--no-underline"
+							href="#calculator">Response due date calculator</a>
+
+					</li>
+					<li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+						<a class="gem-c-contents-list__link govuk-link govuk-link--no-underline"
+							href="#calendar">Working day calendar</a>
+
+					</li>
+					<li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+						<a class="gem-c-contents-list__link govuk-link govuk-link--no-underline"
+							href="#about-working-days">About working days</a>
+
+					</li>
+				</ol>
+			</nav>
+			<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+			<h2 class="govuk-heading-l" id="calculator">Response Due Date Calculator</h2>
 			<p class="govuk-body">This calculator will help you calculate the legal time limits for a public authority
-				to
-				respond to a request under the UK's Freedom of Information Act 2000.</p>
-			<p class="govuk-body">For requests made under the Freedom of Information (Scotland) Act 2002, this
-				calculator may
-				provide incorrect results.</p>
+				to respond to a request under the UK's Freedom of Information Act 2000.</p>
+			<p class="govuk-body">While every attempt has been made to properly account for working and non-working
+				days, this calculator may be inaccurate and neither it's results nor anything on this page should be
+				taken as
+				legal advice.</p>
+			<p class="govuk-body">Requests made under other information access law, such as the Environmental
+				Information Regulations 2004 or the Freedom of Information (Scotland) Act 2002, are not supported.</p>
 			<a href="/flow1.html" role="button" draggable="false" class="govuk-button govuk-button--start"
 				data-module="govuk-button">
 				Use the calculator
@@ -57,22 +83,27 @@
 				</svg>
 			</a>
 			<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-			<h2 class="govuk-heading-l">The Law</h2>
+			<h2 class="govuk-heading-l" id="calendar">Calendar</h2>
+			<p class="govuk-body">
+				The calendar shows the working and non-working days for each year, as defined under the Freedom of
+				Information Act 2000.
+			</p>
+			<a href="/calendar.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+				View the calendar
+			</a>
+			<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+			<h2 class="govuk-heading-l" id="about-working-days">About working days</h2>
 			<p class="govuk-body">Freedom of Information requests must be responded to:</p>
 			<ul class="govuk-list govuk-list--bullet">
 				<li>Promptly, and</li>
-				<li>Within 20 working days</li>
+				<li>Within 20 working days (with some exceptions)</li>
 			</ul>
-			<p class="govuk-body">
-				While the promptness of a response can be challenged, in practice it is hard to do so, and as such this
-				calculator focus on the 20 working day limit.
-			</p>
 			<p class="govuk-body">
 				The 20 working day period starts on the day following the day the organisation received the request.
 				The organisation must then respond by midnight on the 20th working day.
-				If you were asked to clarify your request, the date of receipt would be the date the organisation
-				receives the
-				clarification.
+				If you are asked to clarify your request, the 20 working day period would start the day after the
+				organisation
+				receives the clarification.
 			</p>
 			<p class="govuk-body">Days that do not count as working days are:</p>
 			<ul class="govuk-list govuk-list--bullet">
@@ -96,10 +127,10 @@
 				<li>Boxing Day (26 December)</li>
 				<li>27 December, if Christmas Day fell on a Saturday or Sunday that year</li>
 				<li>Other days, by <a href="https://en.wikipedia.org/wiki/Proclamation#United_Kingdom">royal
-						proclamation</a> (will be published in the London Gazette under notice code 1101, e.g. <a
+						proclamation</a> (will be published in the London Gazette, e.g. <a
 						href="https://www.thegazette.co.uk/notice/4388378">4388378</a>)</li>
-				<li>Other days, appointed by the Secretary of State for Northern Ireland (will be published in the
-					Belfast Gazette under notice type 1101, e.g. <a
+				<li>Other days, as ordered by the Secretary of State for Northern Ireland (will be published in the
+					Belfast Gazette, e.g. <a
 						href="https://www.thegazette.co.uk/notice/B-7164-1101-24">B-7164-1101/24</a>)</li>
 			</ul>
 			<details class="govuk-details" data-module="govuk-details">
@@ -114,20 +145,8 @@
 					that occurs after the 20 March.
 				</div>
 			</details>
-			<h3 class="govuk-heading-m">Exceptions</h3>
-			<p class="govuk-body">
-				There are some exceptions to the 20 working day limit, and these are well documented on the Information
-				Commissioner's website: <a
-					href="https://ico.org.uk/for-organisations/foi-eir-and-access-to-information/freedom-of-information-and-environmental-information-regulations/time-limits-for-compliance-under-the-freedom-of-information-act-section-10/">Time
-					limits for compliance under the Freedom of Information Act (Section 10)</a>
-			</p>
-			<h3 class="govuk-heading-m">Calendar</h3>
-			<p class="govuk-body">
-				We provide a calendar that shows the legal FOI working days for any given year:
-			</p>
-			<a href="/calendar.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-				View the calendar
-			</a>
+			<p class="govuk-body">The monarch may also, by royal proclamation, declare a date that would otherwise not
+				be a working day to be a working day.</p>
 		</main>
 	</div>
 	<footer class="govuk-footer " role="contentinfo">

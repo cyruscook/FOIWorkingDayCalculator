@@ -74,14 +74,10 @@
 			invalidDate("Dates before 16 December 1971 are not supported");
 		}
 
-		var after20 = window.wdcalc.addWorkingDays(date, 20);
-		console.log(date.toString());
-		console.log(after20.toString());
-
 		var params = new URLSearchParams();
-		params.set("20day", after20.day);
-		params.set("20month", after20.month);
-		params.set("20year", after20.year);
+		params.set("day", date.day);
+		params.set("month", date.month);
+		params.set("year", date.year);
 		document.location.assign("/results.html?" + params.toString());
 	});
 }());
