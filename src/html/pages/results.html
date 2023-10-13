@@ -1,0 +1,45 @@
+{% extends "partials/view.html" %}
+
+{% set backLink = "/flow1.html" %}
+{% set scripts = ["/js/results.js"] %}
+{% set styles = [] %}
+
+
+{% block content %}
+    <h2 class="govuk-heading-l" id="calculator">Response due date for a 20 working day limit:</h2>
+    <div class="govuk-panel govuk-panel--confirmation" id="results-response-panel" hidden aria-hidden="true">
+        <div class="govuk-panel__body">
+            You should receive a response by<br>midnight on the <strong id="results-response-date">23 March
+                2023</strong>
+        </div>
+    </div>
+    <p class="govuk-body">
+        There are some situations where the authority may be able to respond later than this:
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>If the authority needs more time to consider a public interest test, they may delay by a reasonable
+            time (normally no more than 20 working days), but they should notify you that they are doing this
+        </li>
+        <li>If the authority is a school, in which case they must respond within 20 working school days or 60
+            working days (whichever is shorter)</li>
+        <li>Depending on the information requested, if the authority is an archival authority they may have a 30
+            working day limit</li>
+        <li>If the information requested is held by someone involved in a military operation or the preperation
+            of a military operation there may be an up to 60 working day limit</li>
+        <li>If the information requested is held overseas there may be an up to 60 working day limit</li>
+    </ul>
+    <p class="govuk-body">
+        Below is a table of the required response dates for time limits up to 60 working days:
+    </p>
+    <table class="govuk-table" id="results-response-table" hidden aria-hidden="true">
+        <caption class="govuk-table__caption govuk-table__caption--m">Required response dates for time limits up to 60 working days</caption>
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Time limit</th>
+                <th scope="col" class="govuk-table__header">Required response date</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+        </tbody>
+    </table>
+{% endblock %}

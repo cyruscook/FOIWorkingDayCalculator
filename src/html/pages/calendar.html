@@ -1,0 +1,40 @@
+{% extends "partials/view.html" %}
+{% from "govuk/components/pagination/macro.njk" import govukPagination %}
+
+{% set scripts = ["/js/calendar.js"] %}
+{% set styles = ["/css/calendar.css"] %}
+
+{% block content %}
+    <h1 class="govuk-heading-xl">Freedom of Information Working Day Calendar</h1>
+    {{ govukPagination({
+        previous: {
+            href: "#"
+        },
+        next: {
+            href: "#"
+        },
+        items: [
+            {
+                number: 1,
+                current: true,
+                href: "#"
+            }
+        ]
+    }) }}
+
+    <table id="calendar-table">
+        <thead>
+            <tr>
+                <th scope="col">Mon</th>
+                <th scope="col">Tue</th>
+                <th scope="col">Wed</th>
+                <th scope="col">Thu</th>
+                <th scope="col">Fri</th>
+                <th scope="col">Sat</th>
+                <th scope="col">Sun</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+{% endblock %}

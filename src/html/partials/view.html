@@ -1,0 +1,45 @@
+{% extends "govuk/template.njk" %}
+{% from "partials/footer.html" import footer %}
+{% from "partials/header.html" import header %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% set assetPath = "/assets" %}
+
+{% block title %}
+<title>FOI Working Day Calculator</title>
+{% endblock %}
+
+{% block header %}
+  {{ header() }}
+{% endblock %}
+
+{% block head %}
+<link href="/css/style.css" rel="stylesheet">
+  {% for item in styles %}
+    <link href="{{item}}" rel="stylesheet">
+  {% endfor %}
+{% endblock %}
+
+{% block beforeContent %}
+{% if backLink %}
+{{ govukBackLink({
+  text: "Back",
+  href: backLink
+}) }}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">Default page template</h1>
+{% endblock %}
+
+{% block bodyEnd %}
+  <script src="/js/webpack.js"></script>
+  {% for item in scripts %}
+    <script src="{{item}}"></script>
+  {% endfor %}
+{% endblock %}
+
+{% block footer %}
+    {{ footer() }}
+{% endblock %}
