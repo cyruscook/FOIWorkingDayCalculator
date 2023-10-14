@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
 import { addWorkingDays } from './wdcalc.js';
+import { getProclamations } from './proclamations.js';
 
 var monthStrings = [
     "January",
@@ -27,8 +28,10 @@ var month = Number(params.get("month"));
 var year = Number(params.get("year"));
 
 if (day !== NaN && month !== NaN && year !== NaN) {
+    let proclamations = await getProclamations(window.location.origin);
+
     var date = DateTime.utc(year, month, day);
-    var after20 = addWorkingDays(date, 20);
+    var after20 = addWorkingDays(date, 20, proclamations);
 
     responseDate.innerText = after20.day + " " + monthStrings[after20.month - 1] + " " + after20.year;
 

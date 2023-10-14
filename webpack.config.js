@@ -3,7 +3,8 @@ module.exports = {
     main: "./src/js/index.js",
     calendar: "./src/js/calendar.js",
     flow1: "./src/js/flow1.js",
-    results: "./src/js/results.js"
+    results: "./src/js/results.js",
+    proclaimed_dates: "./src/js/proclaimed_dates.js"
   },
   output: {
     filename: "[name].js",

@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
-import { isNonWorkingDay, addWorkingDays } from './wdcalc.js';
-import { easterCalc } from './eastercalc.js';
+import { isNonWorkingDay } from './wdcalc.js';
+import { getProclamations } from './proclamations.js';
 
 var monthStrings = [
 	"January",
@@ -17,7 +17,7 @@ var monthStrings = [
 	"December"
 ];
 
-function showCalendarForYear(startYear) {
+async function showCalendarForYear(startYear) {
 	console.log("Showing year", startYear);
 
 	var currentYearTxt = document.querySelector(".govuk-pagination__item--current > a");
@@ -28,7 +28,7 @@ function showCalendarForYear(startYear) {
 	tbody.replaceChildren([]);
 	currentYearTxt.innerText = startYear;
 	var date = DateTime.utc(startYear, 1, 1);
-	var easter = easterCalc(startYear);
+    let proclamations = await getProclamations(window.location.origin);
 
 	while (date.year === startYear) {
 		if (date.day === 1) {
@@ -58,7 +58,7 @@ function showCalendarForYear(startYear) {
 		var item = document.createElement("td");
 		item.innerText = date.day;
 		row.appendChild(item);
-		if ((date.year > 1971 || (date.month >= 12 && date.day >= 16)) && isNonWorkingDay(date, easter)) {
+		if ((date.year > 1971 || (date.month >= 12 && date.day >= 16)) && isNonWorkingDay(date, proclamations)) {
 			item.classList.add("calendar-nwd");
 		} else {
 			item.classList.add("calendar-wd");
