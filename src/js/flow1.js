@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 
-var contBtn = document.querySelector("#flow1-continue-btn");
+var contBtn = document.querySelector("a.govuk-button");
 var form = document.querySelector("form#flow1-form");
 var dayInput = document.querySelector("#request-received-day");
 var monthInput = document.querySelector("#request-received-month");
@@ -75,7 +75,12 @@ function submitForm() {
     }
 };
 
-form.addEventListener("submit", (e) => {
+contBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    submitForm();
+});
+
+contBtn.addEventListener("submit", (e) => {
     e.preventDefault();
     submitForm();
 });
