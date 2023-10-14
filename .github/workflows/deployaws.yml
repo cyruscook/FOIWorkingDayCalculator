@@ -17,6 +17,11 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: Upload built website
+        uses: actions/upload-artifact@v3
+        with:
+          name: built-website
+          path: ./build
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
