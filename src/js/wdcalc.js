@@ -44,7 +44,6 @@ export const bankHolidaysForYear = function(year, proclamations) {
 	} else {
 		bhs.push(createDateTime(year, 1, 3));
 	}
-	console.log(bhs);
 	// 17th March, if it be not a Sunday or, if it be a Sunday, 18th March - Saint Patricks
 	let gf = createDateTime(year, 3, 17);
 	if (gf.weekday !== 7) {
