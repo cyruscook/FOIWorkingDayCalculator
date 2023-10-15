@@ -15,14 +15,13 @@ const easterCache = {};
 export const bankHolidaysForYear = function(year, proclamations) {
 	let bhs = [];
 
-	/*
 	for (const notice of Object.keys(proclamations["bhs"])) {
 		for (const date of proclamations["bhs"][notice]) {
 			if (date.year === year) {
 				bhs.push(date);
 			}
 		}
-	}*/
+	}
 	
 	let easter = easterCache[year];
 	if (!easter) {

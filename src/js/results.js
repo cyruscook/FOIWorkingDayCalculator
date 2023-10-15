@@ -36,7 +36,7 @@ if (day !== NaN && month !== NaN && year !== NaN) {
     responseDate.innerText = after20.day + " " + monthStrings[after20.month - 1] + " " + after20.year;
 
     for (var extension = 21; extension < 61; extension++) {
-        var extensionDate = addWorkingDays(date, extension);
+        var extensionDate = addWorkingDays(date, extension, proclamations);
         
         var row = document.createElement("tr");
         var head = document.createElement("th");
