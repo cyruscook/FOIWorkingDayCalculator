@@ -17,10 +17,14 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: Fix permissions
+        run: |
+          chmod -c -R +rX "./build/" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
       - name: Upload built website
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: built-website
           path: ./build
   
   deploy:
@@ -36,5 +40,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-        with:
-          artifact_name: built-website
