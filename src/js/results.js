@@ -28,7 +28,7 @@ var month = Number(params.get("month"));
 var year = Number(params.get("year"));
 
 if (day !== NaN && month !== NaN && year !== NaN) {
-    let proclamations = await getProclamations(window.location.origin);
+    let proclamations = await getProclamations(`https://d7rpp5pzwp0ap.cloudfront.net/bh_api`);
 
     var date = DateTime.utc(year, month, day);
     var after20 = addWorkingDays(date, 20, proclamations);

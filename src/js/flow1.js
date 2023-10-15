@@ -70,7 +70,7 @@ function submitForm() {
             params.set("day", date.day);
             params.set("month", date.month);
             params.set("year", date.year);
-            document.location.assign("/results.html?" + params.toString());
+            document.location.assign("results.html?" + params.toString());
         }
     }
 };

@@ -28,7 +28,7 @@ async function showCalendarForYear(startYear) {
 	tbody.replaceChildren([]);
 	currentYearTxt.innerText = startYear;
 	var date = DateTime.utc(startYear, 1, 1);
-    let proclamations = await getProclamations(window.location.origin);
+    let proclamations = await getProclamations(`https://d7rpp5pzwp0ap.cloudfront.net/bh_api`);
 
 	while (date.year === startYear) {
 		if (date.day === 1) {
