@@ -1,4 +1,4 @@
-name: Deploy website to S3
+name: Build & deploy website
 on:
   workflow_dispatch:
   push:
@@ -23,7 +23,7 @@ jobs:
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
       - name: Upload built website
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         with:
           path: ./build
   
