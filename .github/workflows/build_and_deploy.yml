@@ -25,7 +25,7 @@ jobs:
       - name: Upload built website
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./build
+          path: ./build/
   
   deploy:
     runs-on: ubuntu-latest
