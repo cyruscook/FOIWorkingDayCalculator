@@ -86,7 +86,7 @@ var currentYear = DateTime.utc().year;
 function saveInAddress(year) {
 	var params = new URLSearchParams(document.location.search);
 	params.set("year", year);
-	window.history.replaceState(window.history.state, "", "?" + params.toString());
+	window.history.replaceState(window.history.state, "", window.location.pathname + "?" + params.toString() + window.location.hash);
 }
 
 prevYearBtn.addEventListener("click", function (event) {

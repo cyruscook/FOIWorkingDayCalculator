@@ -19,7 +19,7 @@ function saveInAddress(day, month, year) {
     params.set("day", day);
     params.set("month", month);
     params.set("year", year);
-    window.history.replaceState(window.history.state, "", "?" + params.toString());
+	window.history.replaceState(window.history.state, "", window.location.pathname + "?" + params.toString() + window.location.hash);
 }
 
 function invalidDate(message) {
