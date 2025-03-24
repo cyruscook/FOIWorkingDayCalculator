@@ -3,7 +3,7 @@ import { getProclamations } from './proclamations.js';
 
 let proclamations = undefined;
 try {
-    proclamations = await getProclamations(`https://d7rpp5pzwp0ap.cloudfront.net/bh_api`);
+    proclamations = await getProclamations(`https://d7rpp5pzwp0ap.cloudfront.net`);
 } catch (error) {
     console.error("Failed to fetch proclamations", error);
 }
