@@ -1,0 +1,57 @@
+.responseCalc {
+    background: #ffffff;
+    border: 1px solid #dfe1e3;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(11, 12, 12, 0.04);
+
+    margin: 1.5rem auto;
+    padding: 1rem;
+
+    width: 100%;
+    max-width: fit-content;
+    box-sizing: border-box;
+}
+
+/* Error area inside the input panel (if present) */
+.response-panel #request-received-error,
+#request-received-error {
+    margin-top: 0.75rem;
+}
+
+/* DatePicker wrapper provided via wrapperClassName="datePicker" */
+.datePicker {
+    display: block;
+    width: 100%;
+}
+
+/* Ensure the react-datepicker input fills the panel width */
+.datePicker .react-datepicker__input-container,
+.datePicker .react-datepicker-wrapper {
+    width: 100%;
+}
+
+.datePicker input {
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+    border-radius: 6px;
+    border: 1px solid #dfe1e3;
+    font-size: 1rem;
+    color: var(--text, #0b0c0c);
+    background: #fff;
+    transition:
+        box-shadow 120ms ease,
+        border-color 120ms ease;
+}
+
+/* Focus state consistent with global forms */
+.datePicker input:focus {
+    outline: none;
+    box-shadow: 0 6px 18px rgba(43, 140, 196, 0.12);
+    border-color: var(--accent, #2b8cc4);
+}
+
+/* Small tweak for the 'Today' button inside the calendar popup */
+.react-datepicker__today-button {
+    font-weight: 600;
+    color: var(--brand, #005ea5);
+}

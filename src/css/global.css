@@ -1,0 +1,74 @@
+:root {
+    --bg: #ffffff;
+    --page-bg: #f7f7f7;
+    --text: #0b0c0c;
+    --muted: #6b6f73;
+    --brand: #005ea5;
+    --brand-strong: #003f72;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text);
+    background: linear-gradient(180deg, var(--page-bg) 0, var(--page-bg) 100%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+h2 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    color: var(--brand-strong);
+}
+
+a {
+    color: var(--brand);
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid rgba(0, 94, 165, 0.15);
+    outline-offset: 2px;
+}
+
+button,
+button[type="button"],
+button[type="submit"] {
+    background: var(--brand);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+button.secondary {
+    background: #f3f2f1;
+    color: var(--text);
+    border: 1px solid #dfe1e3;
+}

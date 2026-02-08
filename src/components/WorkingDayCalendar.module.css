@@ -1,0 +1,40 @@
+.year {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.monthTable {
+    table-layout: fixed;
+    width: fit-content;
+
+    margin: 0.5rem;
+    padding: 0.5rem;
+
+    border: 1px solid #dfe1e3;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(11, 12, 12, 0.04);
+}
+
+.monthTable > caption {
+    font-weight: bold;
+}
+
+.monthTable > thead > tr > th {
+    padding: 0 0.4rem;
+    text-align: center;
+}
+
+.monthTable > tbody > tr > td {
+    font-family: monospace;
+    text-align: center;
+}
+
+.workingDay {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+.nonWorkingDay {
+    background-color: #f44336;
+    color: #ffffff;
+}

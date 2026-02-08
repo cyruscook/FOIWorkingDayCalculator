@@ -24,9 +24,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-
-function integerDivision(dividend, divider) {
-    return Math.floor(dividend / divider)
+function integerDivision(dividend: number, divider: number): number {
+  return Math.floor(dividend / divider);
 }
 
 /**
@@ -47,22 +46,22 @@ function integerDivision(dividend, divider) {
  *
  * @returns Easter date for the provided year.
  */
-function gregorian(year) {
-    const a = year % 19
-    const b = integerDivision(year, 100)
-    const c = year % 100
-    const d = integerDivision(b, 4)
-    const e = b % 4
-    const g = integerDivision(8 * b + c, 25)
-    const h = (19 * a + b - d - g + 15) % 30
-    const i = integerDivision(c, 4)
-    const k = c % 4
-    const l = (2 * e + 2 * i - h - k + 32) % 7
-    const m = integerDivision(a + 11 * h + 19 * l, 433)
-    const n = integerDivision(h + l - 7 * m + 90, 25)
-    const p = (h + l - 7 * m + 33 * n + 19) % 32
+function easterCalc(year: number): [number, number, number] {
+  const a = year % 19;
+  const b = integerDivision(year, 100);
+  const c = year % 100;
+  const d = integerDivision(b, 4);
+  const e = b % 4;
+  const g = integerDivision(8 * b + c, 25);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = integerDivision(c, 4);
+  const k = c % 4;
+  const l = (2 * e + 2 * i - h - k + 32) % 7;
+  const m = integerDivision(a + 11 * h + 19 * l, 433);
+  const n = integerDivision(h + l - 7 * m + 90, 25);
+  const p = (h + l - 7 * m + 33 * n + 19) % 32;
 
-    return [year, n, p];
+  return [year, n, p];
 }
 
-module.exports.easterCalc = gregorian;
+export default easterCalc;
