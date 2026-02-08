@@ -1,26 +1,51 @@
 import { DateTime } from "luxon";
 
-export const getProclamations = async function(api_origin) {
-    let req1 = fetch(`${api_origin}/proclaimed_bhs.json`);
-    let req2 = fetch(`${api_origin}/proclaimed_not_bhs.json`);
-    let resp1 = (await req1).json();
-    let resp2 = (await req2).json();
-    const bhs = await resp1;
-    const nbhs = await resp2;
+export const getProclamations = async function (api_origin) {
+	let req1 = fetch(`${api_origin}/proclaimed_bhs.json`);
+	let req2 = fetch(`${api_origin}/proclaimed_not_bhs.json`);
+	let resp1 = (await req1).json();
+	let resp2 = (await req2).json();
+	const bhs = await resp1;
+	const nbhs = await resp2;
 
-    function dateTimeMap(dates) {
-        return dates.map((date) => DateTime.fromISO(date).setZone("Europe/London", { keepLocalTime: true }));
-    }
+	function dateTimeMap(dates) {
+		return dates.map((date) =>
+			DateTime.fromISO(date).setZone("Europe/London", {
+				keepLocalTime: true,
+			}),
+		);
+	}
 
-    for (const key of Object.keys(bhs)) {
-        bhs[key] = dateTimeMap(bhs[key]);
-    }
-    for (const key of Object.keys(nbhs)) {
-        nbhs[key] = dateTimeMap(nbhs[key]);
-    }
+	for (const key of Object.keys(bhs)) {
+		bhs[key] = dateTimeMap(bhs[key]);
+	}
+	for (const key of Object.keys(nbhs)) {
+		nbhs[key] = dateTimeMap(nbhs[key]);
+	}
 
-    return {
-        "bhs": bhs,
-        "nbhs": nbhs
-    };
-}
+	let datebhs = {};
+	let datenbhs = {};
+	for (const notice of Object.keys(bhs)) {
+		for (const date of bhs[notice]) {
+			datebhs[date] = datebhs[date] || [];
+			datebhs[date].push(notice);
+		}
+	}
+	for (const notice of Object.keys(nbhs)) {
+		for (const date of nbhs[notice]) {
+			datenbhs[date] = datenbhs[date] || [];
+			datenbhs[date].push(notice);
+		}
+	}
+
+	return {
+		noticesToDate: {
+			bhs: bhs,
+			nbhs: nbhs,
+		},
+		dateToNotices: {
+			bhs: datebhs,
+			nbhs: datenbhs,
+		},
+	};
+};

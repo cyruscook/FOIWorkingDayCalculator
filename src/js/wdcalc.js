@@ -1,34 +1,39 @@
 import { DateTime } from "luxon";
-import { easterCalc } from './eastercalc.js';
+import { easterCalc } from "./eastercalc.js";
 
 function dateTimesEqual(d1, d2) {
-	return d1.hasSame(d2, "year") && d1.hasSame(d2, "month") && d1.hasSame(d2, "day");
+	return (
+		d1.hasSame(d2, "year") &&
+		d1.hasSame(d2, "month") &&
+		d1.hasSame(d2, "day")
+	);
 }
 
 function createDateTime(year, month, day) {
-	return DateTime.fromObject({ year: year, month: month, day: day }, { zone: 'Europe/London' })
+	return DateTime.fromObject(
+		{ year: year, month: month, day: day },
+		{ zone: "Europe/London" },
+	);
 }
 
 const bhCache = {};
 const easterCache = {};
 
-export const bankHolidaysForYear = function(year, proclamations) {
+export const bankHolidaysForYear = function (year, proclamations) {
 	let bhs = [];
 
-	for (const notice of Object.keys(proclamations["bhs"])) {
-		for (const date of proclamations["bhs"][notice]) {
-			if (date.year === year) {
-				bhs.push(date);
-			}
+	for (const date of Object.keys(proclamations.dateToNotices.bhs)) {
+		if (date.year === year) {
+			bhs.push(date);
 		}
 	}
-	
+
 	let easter = easterCache[year];
 	if (!easter) {
-		easterCache[year] = createDateTime(...easterCalc(year))
+		easterCache[year] = createDateTime(...easterCalc(year));
 		easter = easterCache[year];
 	}
-	
+
 	// New Year’s Day, if it be not a Sunday or, if it be a Sunday, 3rd January
 	let ny = createDateTime(year, 1, 1);
 	if (ny.weekday !== 7) {
@@ -95,7 +100,7 @@ export const bankHolidaysForYear = function(year, proclamations) {
 	} else {
 		var sar = sa;
 		do {
-			sar = sar.plus({ days: 1});
+			sar = sar.plus({ days: 1 });
 		} while (sar.weekday !== 1);
 		bhs.push(sa);
 	}
@@ -119,34 +124,34 @@ export const bankHolidaysForYear = function(year, proclamations) {
 	let bhArray = new Array(12);
 	for (let month = 1; month < 13; month++) {
 		let date = createDateTime(year, month, 1);
-		bhArray[month-1] = new Array(date.daysInMonth).fill(false);
+		bhArray[month - 1] = new Array(date.daysInMonth).fill(false);
 	}
 
 	for (const date of bhs) {
-		bhArray[date.month-1][date.day-1] = true;
+		bhArray[date.month - 1][date.day - 1] = true;
 	}
-	
-	for (const notice of Object.keys(proclamations["nbhs"])) {
-		for (const date of proclamations["nbhs"][notice]) {
-			if (date.year === year) {
-				bhArray[date.month-1][date.day-1] = false;
-			}
+
+	for (const date of Object.keys(proclamations.dateToNotices.nbhs)) {
+		if (date.year === year) {
+			bhArray[date.month - 1][date.day - 1] = false;
 		}
 	}
 
 	// Common Law holidays
 	// Christmas Day
-	bhArray[12-1][25-1] = true;
+	bhArray[12 - 1][25 - 1] = true;
 	// Good Friday
 	let gfcl = easter.plus({ days: -2 });
-	bhArray[gfcl.month-1][gfcl.day-1] = true;
+	bhArray[gfcl.month - 1][gfcl.day - 1] = true;
 
 	return bhArray;
-}
+};
 
-export const isNonWorkingDay = function(date, proclamations) {
+export const isNonWorkingDay = function (date, proclamations) {
 	if (date.year <= 1971 && date.month <= 12 && date.day < 16) {
-		throw new Error("Dates before 16 December 1971 are not supported as the Banking and Financial Dealings Act 1971 had not received Royal Assent");
+		throw new Error(
+			"Dates before 16 December 1971 are not supported as the Banking and Financial Dealings Act 1971 had not received Royal Assent",
+		);
 	}
 
 	if (date.weekday === 6 || date.weekday === 7) {
@@ -159,14 +164,14 @@ export const isNonWorkingDay = function(date, proclamations) {
 		bankholidays = bhCache[date.year];
 	}
 
-	return bankholidays[date.month-1][date.day-1];
-}
+	return bankholidays[date.month - 1][date.day - 1];
+};
 
-export const addWorkingDays = function(date, days, proclamations) {
+export const addWorkingDays = function (date, days, proclamations) {
 	var easterYear = NaN;
 	var easter = undefined;
 
-	for (var i = 0; i < days;) {
+	for (var i = 0; i < days; ) {
 		// Add a day
 		date = date.plus({ days: 1 });
 
@@ -177,5 +182,4 @@ export const addWorkingDays = function(date, days, proclamations) {
 	}
 
 	return date;
-}
-
+};

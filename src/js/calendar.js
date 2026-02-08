@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
-import { isNonWorkingDay } from './wdcalc.js';
-import { getProclamations } from './proclamations.js';
+import { isNonWorkingDay } from "./wdcalc.js";
+import { getProclamations } from "./proclamations.js";
 
 var monthStrings = [
 	"January",
@@ -14,21 +14,25 @@ var monthStrings = [
 	"September",
 	"October",
 	"November",
-	"December"
+	"December",
 ];
 
 async function showCalendarForYear(startYear) {
 	console.log("Showing year", startYear);
 
-	var currentYearTxt = document.querySelector(".govuk-pagination__item--current > a");
+	var currentYearTxt = document.querySelector(
+		".govuk-pagination__item--current > a",
+	);
 	var table = document.querySelector("#calendar-table");
 	var tbody = document.querySelector("#calendar-table > tbody");
 	var row = undefined;
-	
+
 	tbody.replaceChildren([]);
 	currentYearTxt.innerText = startYear;
 	var date = DateTime.utc(startYear, 1, 1);
-    let proclamations = await getProclamations(`https://d7rpp5pzwp0ap.cloudfront.net`);
+	let proclamations = await getProclamations(
+		`https://d7rpp5pzwp0ap.cloudfront.net`,
+	);
 
 	while (date.year === startYear) {
 		if (date.day === 1) {
@@ -37,7 +41,7 @@ async function showCalendarForYear(startYear) {
 			tbody.appendChild(row);
 			var title = document.createElement("th");
 			title.innerText = monthStrings[date.month - 1];
-			title.setAttribute("colspan", "7")
+			title.setAttribute("colspan", "7");
 			row.appendChild(title);
 		}
 		if (date.day === 1 || date.weekday === 1) {
@@ -58,7 +62,10 @@ async function showCalendarForYear(startYear) {
 		var item = document.createElement("td");
 		item.innerText = date.day;
 		row.appendChild(item);
-		if ((date.year > 1971 || (date.month >= 12 && date.day >= 16)) && isNonWorkingDay(date, proclamations)) {
+		if (
+			(date.year > 1971 || (date.month >= 12 && date.day >= 16)) &&
+			isNonWorkingDay(date, proclamations)
+		) {
 			item.classList.add("calendar-nwd");
 		} else {
 			item.classList.add("calendar-wd");
@@ -75,18 +82,28 @@ async function showCalendarForYear(startYear) {
 
 		date = date.plus({ days: 1 });
 	}
-
 }
 
-var prevYearBtn = document.querySelector(".govuk-pagination__prev > a.govuk-pagination__link");
-var nextYearBtn = document.querySelector(".govuk-pagination__next > a.govuk-pagination__link");
+var prevYearBtn = document.querySelector(
+	".govuk-pagination__prev > a.govuk-pagination__link",
+);
+var nextYearBtn = document.querySelector(
+	".govuk-pagination__next > a.govuk-pagination__link",
+);
 
 var currentYear = DateTime.utc().year;
 
 function saveInAddress(year) {
 	var params = new URLSearchParams(document.location.search);
 	params.set("year", year);
-	window.history.replaceState(window.history.state, "", window.location.pathname + "?" + params.toString() + window.location.hash);
+	window.history.replaceState(
+		window.history.state,
+		"",
+		window.location.pathname +
+			"?" +
+			params.toString() +
+			window.location.hash,
+	);
 }
 
 prevYearBtn.addEventListener("click", function (event) {
