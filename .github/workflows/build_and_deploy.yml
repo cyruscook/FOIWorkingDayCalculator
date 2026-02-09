@@ -18,7 +18,7 @@ jobs:
       - name: Type check
         run: tsc -b
       - name: Build website
-        run: vite build --base "/FOIWorkingDayCalculator/"
+        run: npx vite build --base "/FOIWorkingDayCalculator/"
       - name: Fix permissions
         run: |
           chmod -c -R +rX "./build/" | while read line; do
