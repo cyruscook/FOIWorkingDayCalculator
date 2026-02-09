@@ -4,6 +4,7 @@ import { DateTime } from "luxon";
 import { getProclamations, type Proclamations } from "../lib/proclamations";
 
 import classes from "./ResponseDateResults.module.css";
+import { ErrorBoundary } from "react-error-boundary";
 
 type LoadedResponseDateResults = {
   proclamationsPromise: Promise<Proclamations>;
@@ -50,14 +51,14 @@ const ResponseDateResults: React.FC<ResponseDateResultsProps> = ({
   return (
     <>
       {receivedDate !== null ? (
-        //<Suspense fallback={<span>Loading...</span>}>
-        <LoadedResponseDateResults
-          proclamationsPromise={proclamationsPromise}
-          receivedDate={receivedDate}
-          workingDays={workingDays}
-        />
+        <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
+          <LoadedResponseDateResults
+            proclamationsPromise={proclamationsPromise}
+            receivedDate={receivedDate}
+            workingDays={workingDays}
+          />
+        </ErrorBoundary>
       ) : (
-        //</Suspense>
         <></>
       )}
     </>

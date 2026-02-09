@@ -2,6 +2,7 @@ import React, { Suspense, use, useMemo } from "react";
 
 import { getProclamations, type Proclamations } from "../lib/proclamations";
 import WorkingDayCalendar from "../components/WorkingDayCalendar";
+import { ErrorBoundary } from "react-error-boundary";
 
 type LoadedCalendarProps = {
   proclamationsPromise: Promise<Proclamations>;
@@ -24,9 +25,11 @@ const Calendar: React.FC = () => {
         Information Act
       </h1>
 
-      <Suspense fallback={<p>Loading...</p>}>
-        <LoadedCalendar proclamationsPromise={proclamationsPromise} />
-      </Suspense>
+      <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
+        <Suspense fallback={<p>Loading...</p>}>
+          <LoadedCalendar proclamationsPromise={proclamationsPromise} />
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 };

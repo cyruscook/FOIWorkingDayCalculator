@@ -1,4 +1,5 @@
 import React, { Suspense, use, useMemo } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { DateTime } from "luxon";
 import {
   getProclamations,
@@ -66,9 +67,11 @@ const ProclaimedDates: React.FC = () => {
     <>
       <h1>Proclaimed dates</h1>
 
-      <Suspense fallback={<p>Loading...</p>}>
-        <LoadedProclaimedDates proclamationsPromise={proclamationsPromise} />
-      </Suspense>
+      <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
+        <Suspense fallback={<p>Loading...</p>}>
+          <LoadedProclaimedDates proclamationsPromise={proclamationsPromise} />
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 };
