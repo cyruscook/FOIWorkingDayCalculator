@@ -9,6 +9,8 @@ import classes from "./App.module.css";
 import Calendar from "./pages/Calendar";
 import NotFound from "./pages/NotFound";
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const App: React.FC = () => {
   return (
     <BrowserRouter>
@@ -16,9 +18,12 @@ const App: React.FC = () => {
 
       <main role="main" className={classes.main}>
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/proclaimed_dates" element={<ProclaimedDates />} />
-          <Route path="/calendar" element={<Calendar />} />
+          <Route path={`${BASE_URL}/`} element={<Main />} />
+          <Route
+            path={`${BASE_URL}/proclaimed_dates`}
+            element={<ProclaimedDates />}
+          />
+          <Route path={`${BASE_URL}/calendar`} element={<Calendar />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

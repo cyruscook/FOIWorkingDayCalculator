@@ -15,8 +15,10 @@ jobs:
           node-version: 20
       - name: Install node dependencies
         run: npm ci
+      - name: Type check
+        run: tsc -b
       - name: Build website
-        run: npm run build
+        run: vite build --base "/FOIWorkingDayCalculator/"
       - name: Fix permissions
         run: |
           chmod -c -R +rX "./build/" | while read line; do

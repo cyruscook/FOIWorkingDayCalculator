@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import classes from "./Main.module.css";
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const Main: React.FC = () => {
   return (
     <div className={classes.main}>
@@ -65,7 +67,7 @@ const Main: React.FC = () => {
           , or as ordered by the Secretary of State for Northern Ireland, is a
           bank holiday in either England, Wales, Scotland or Northern Ireland.
           Such proclamations are published in the relevant Gazette. You can{" "}
-          <Link to="/proclaimed_dates">
+          <Link to={`${BASE_URL}/proclaimed_dates`}>
             view a list of proclaimed bank holidays
           </Link>
           .
