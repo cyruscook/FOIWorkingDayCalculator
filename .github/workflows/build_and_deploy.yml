@@ -19,9 +19,10 @@ jobs:
         run: tsc -b
       - name: Build website
         run: npx vite build --base "/FOIWorkingDayCalculator/"
+      - run: cp dist/index.html dist/404.html # https://github.com/orgs/community/discussions/64096#discussioncomment-14740476
       - name: Fix permissions
         run: |
-          chmod -c -R +rX "./build/" | while read line; do
+          chmod -c -R +rX "./dist/" | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
       - name: Upload built website
