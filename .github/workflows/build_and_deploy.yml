@@ -20,6 +20,7 @@ jobs:
       - name: Build website
         run: npx vite build --base "/FOIWorkingDayCalculator/"
       - run: mkdir -p dist/{proclaimed_dates,calendar} && cp dist/index.html dist/proclaimed_dates/ && cp dist/index.html dist/calendar/
+      - run: cp dist/index.html dist/404.html
       - name: Fix permissions
         run: |
           chmod -c -R +rX "./dist/" | while read line; do
