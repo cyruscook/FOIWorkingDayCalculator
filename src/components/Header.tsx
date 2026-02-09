@@ -18,10 +18,10 @@ const Header: React.FC = () => {
             <NavLink to={`${BASE_URL}/`}>Home</NavLink>
           </li>
           <li>
-            <NavLink to={`${BASE_URL}/calendar`}>Calendar</NavLink>
+            <NavLink to={`${BASE_URL}/calendar/`}>Calendar</NavLink>
           </li>
           <li>
-            <NavLink to={`${BASE_URL}/proclaimed_dates`}>
+            <NavLink to={`${BASE_URL}/proclaimed_dates/`}>
               Proclaimed dates
             </NavLink>
           </li>

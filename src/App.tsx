@@ -20,10 +20,10 @@ const App: React.FC = () => {
         <Routes>
           <Route path={`${BASE_URL}/`} element={<Main />} />
           <Route
-            path={`${BASE_URL}/proclaimed_dates`}
+            path={`${BASE_URL}/proclaimed_dates/`}
             element={<ProclaimedDates />}
           />
-          <Route path={`${BASE_URL}/calendar`} element={<Calendar />} />
+          <Route path={`${BASE_URL}/calendar/`} element={<Calendar />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
