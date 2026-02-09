@@ -19,7 +19,7 @@ jobs:
         run: tsc -b
       - name: Build website
         run: npx vite build --base "/FOIWorkingDayCalculator/"
-      - run: cp dist/index.html dist/404.html # https://github.com/orgs/community/discussions/64096#discussioncomment-14740476
+      - run: mkdir -p dist/{proclaimed_dates,calendar} && cp dist/index.html dist/proclaimed_dates/ && cp dist/index.html dist/calendar/
       - name: Fix permissions
         run: |
           chmod -c -R +rX "./dist/" | while read line; do
